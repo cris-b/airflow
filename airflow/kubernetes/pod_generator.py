@@ -537,7 +537,6 @@ class PodGenerator(object):
         """
         dynamic_pod = PodGenerator(
             namespace=namespace,
-            image=kube_image,
             labels={
                 'airflow-worker': worker_uuid,
                 'dag_id': make_safe_label_value(dag_id),
@@ -553,7 +552,7 @@ class PodGenerator(object):
                 'execution_date': date.isoformat(),
                 'try_number': str(try_number),
             },
-            cmds=command,
+            args=command,
             name=pod_id
         ).gen_pod()
 
